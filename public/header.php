@@ -33,17 +33,26 @@
 </head>
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
-        <div class="container"><a class="navbar-brand" href="#">KaandDy</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
+        <div class="container">
+            <a class="navbar-brand" href="#">KaandDy</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Vender</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Favs</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Chat</a></li>
                 </ul>
                 <form class="form-inline mr-auto" target="_self">
-                    <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"></div>
-                </form><a class="btn btn-light action-button" role="button" href="#">Log out</a></div>
+                    <div class="form-group">
+                        <label for="search-field"><i class="fa fa-search"></i></label>
+                        <input class="form-control search-field" type="search" name="search" id="search-field">
+                    </div>
+                </form>
+                <a class="btn btn-light action-button" role="button" href="#">Log out</a>
+            </div>
         </div>
     </nav>
 </body>

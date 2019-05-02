@@ -1,6 +1,8 @@
 <?php
     require 'connect.php';
     require 'header.php';
+    $sql = "SELECT * FROM users";
+	$result = $conn->query($sql);
 ?>
 <html>
 
@@ -19,7 +21,8 @@
                 <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Users</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" role="tabpanel" id="tab-1"><button class="btn btn-outline-success" type="button">Create</button>
+                <div class="tab-pane active" role="tabpanel" id="tab-1">
+                    <button class="btn btn-outline-success" type="button">Create</button>
                     <p></p>
                     <div class="table-responsive">
                         <table class="table">
@@ -34,14 +37,19 @@
                                 <tr>
                                     <td>Cell 1</td>
                                     <td>Cell 2</td>
-                                    <td><button class="btn btn-outline-warning" type="button">Edit</button><span>&nbsp; &nbsp;</span><button class="btn btn-outline-danger" type="button">Delete</button></td>
+                                    <td>
+                                        <button class="btn btn-outline-warning" type="button">Edit</button>
+                                        <span>&nbsp; &nbsp;</span>
+                                        <button class="btn btn-outline-danger" type="button">Delete</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="tab-2"><button class="btn btn-outline-success" type="button">Create</button>
-                    <p>Content for tab 2.</p>
+                <div class="tab-pane" role="tabpanel" id="tab-2">
+                    <button class="btn btn-outline-success" type="button">Create</button>
+                    <p></p>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -55,14 +63,19 @@
                                 <tr>
                                     <td>Cell 1</td>
                                     <td>Cell 2</td>
-                                    <td><button class="btn btn-outline-warning" type="button">Edit</button><span>&nbsp; &nbsp;</span><button class="btn btn-outline-danger" type="button">Delete</button></td>
+                                    <td>
+                                        <button class="btn btn-outline-warning" type="button">Edit</button>
+                                        <span>&nbsp; &nbsp;</span>
+                                        <button class="btn btn-outline-danger" type="button">Delete</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="tab-2"><button class="btn btn-outline-success" type="button">Create</button>
-                    <p>Content for tab 2.</p>
+                <div class="tab-pane" role="tabpanel" id="tab-2">
+                    <button class="btn btn-outline-success" type="button">Create</button>
+                    <p></p>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -76,7 +89,11 @@
                                 <tr>
                                     <td>Cell 1</td>
                                     <td>Cell 2</td>
-                                    <td><button class="btn btn-outline-warning" type="button">Edit</button><span>&nbsp; &nbsp;</span><button class="btn btn-outline-danger" type="button">Delete</button></td>
+                                    <td>
+                                        <button class="btn btn-outline-warning" type="button">Edit</button>
+                                        <span>&nbsp; &nbsp;</span>
+                                        <button class="btn btn-outline-danger" type="button">Delete</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -85,9 +102,6 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
 </body>
 </html>
 <?php
