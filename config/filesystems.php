@@ -64,6 +64,15 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => 'uzvarieties-cat.espacioseguro.com',
+            'username' => 'laimigs',
+            'password' => 'spetenneser2019',
+            'port' => 21,
+            'ssl' => 'true',
+        ],
+
     ],
 
 ];
