@@ -1,8 +1,6 @@
 <?php
     require 'connect.php';
     require 'header.php';
-    $sql = "SELECT * FROM users";
-	$result = $conn->query($sql);
 ?>
 <html>
 
@@ -25,6 +23,10 @@
                     <button class="btn btn-outline-success" type="button">Create</button>
                     <p></p>
                     <div class="table-responsive">
+                        <?php
+                            $sql = "SELECT * FROM products";
+                            $result = $conn->query($sql);
+                        ?>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -51,6 +53,10 @@
                     <button class="btn btn-outline-success" type="button">Create</button>
                     <p></p>
                     <div class="table-responsive">
+                        <?php
+                            $sql = "SELECT * FROM categories";
+                            $result = $conn->query($sql);
+                        ?>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -73,10 +79,14 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="tab-pane" role="tabpanel" id="tab-3">
                     <button class="btn btn-outline-success" type="button">Create</button>
                     <p></p>
                     <div class="table-responsive">
+                        <?php
+                            $sql = "SELECT * FROM users";
+                            $result = $conn->query($sql);
+                        ?>
                         <table class="table">
                             <thead>
                                 <tr>
