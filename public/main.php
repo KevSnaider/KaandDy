@@ -1,12 +1,20 @@
 <?php
     require 'header.php';
+
+    if(isset($_POST['send'])) {
+        $sql = "INSERT INTO user_responses(ure_question, ure_response, ure_use_id) VALUES
+        ('".$_POST['question1']."', '".$_POST['answer1']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."')),
+        ('".$_POST['question2']."', '".$_POST['answer2']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."')),
+        ('".$_POST['question3']."', '".$_POST['answer3']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."')),
+        ('".$_POST['question4']."', '".$_POST['answer4']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."'));";
+        $result = $conn->query($sql);
+    }
 ?>
 
 <html>
 <head>
 </head>
 <body>
-    <!--if the count(*) in the select is less than 4 then print this-->
     <div id="content" class="content-wrap">
         <div class="row">
             <div class="col-lg-1"></div>
@@ -122,7 +130,29 @@
                                             <div class="row">
                                                 <div class="col-lg-9"></div>
                                                 <div class="col-lg-2">
-                                                    <button type="button" class="btn btn-outline-succes disabled" onclick="sendAnswers();">Send asnwers</button>
+                                                    <button type="submit" class="btn btn-outline-succes disabled" name="send" form="sendAnswers">Send asnwers</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div id="col-lg-12">
+                                                    <form method="POST" action="" id="sendAnswers">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="question1" id="question1">
+                                                            <input type="text" class="form-control" name="answer1" id="answer1">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="question2" id="question2">
+                                                            <input type="text" class="form-control" name="answer2" id="answer2">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="question3" id="question3">
+                                                            <input type="text" class="form-control" name="answer3" id="answer3">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" name="question4" id="question4">
+                                                            <input type="text" class="form-control" name="answer4" id="answer4">
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -146,7 +176,8 @@
             var ans = option.childNodes[3].childNodes[1].childNodes[0].textContent;
 
             if(pref.startsWith('pref-1')) {
-                answers['question1'] = {'question': quest, 'answer': ans};
+                document.getElementById('question1').setAttribute('value', quest);
+                document.getElementById('answer1').setAttribute('value', ans);
                 var li = document.getElementsByClassName('nav-link active')[1];
                 li.setAttribute('class', 'nav-link disabled');
                 var nxtLi = document.getElementsByClassName('nav-link disabled')[1];
@@ -155,7 +186,8 @@
                 next.setAttribute('class', 'tab-pane active');
 
             } else if (pref.startsWith('pref-2')) {
-                answers['question2'] = {'question': quest, 'answer': ans};
+                document.getElementById('question2').setAttribute('value', quest);
+                document.getElementById('answer2').setAttribute('value', ans);
                 var li = document.getElementsByClassName('nav-link active')[1];
                 li.setAttribute('class', 'nav-link disabled');
                 var nxtLi = document.getElementsByClassName('nav-link disabled')[2];
@@ -164,7 +196,8 @@
                 next.setAttribute('class', 'tab-pane active');
 
             } else if (pref.startsWith('pref-3')) {
-                answers['question3'] = {'question': quest, 'answer': ans};
+                document.getElementById('question3').setAttribute('value', quest);
+                document.getElementById('answer3').setAttribute('value', ans);
                 var li = document.getElementsByClassName('nav-link active')[1];
                 li.setAttribute('class', 'nav-link disabled');
                 var nxtLi = document.getElementsByClassName('nav-link disabled')[3];
@@ -173,13 +206,10 @@
                 next.setAttribute('class', 'tab-pane active');
 
             } else if (pref.startsWith('pref-4')) {
-                answers['question4'] = {'question': quest, 'answer': ans};
+                document.getElementById('question4').setAttribute('value', quest);
+                document.getElementById('answer4').setAttribute('value', ans);
                 document.getElementsByClassName('btn btn-outline-succes disabled')[0].setAttribute('class', 'btn btn-outline-success');
             }
-        }
-
-        function sendAswers() {
-            //add code to send via POST the aswers data with jQuery
         }
     </script>
 </body>
