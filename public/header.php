@@ -35,7 +35,7 @@
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
         <div class="container">
-            <a class="navbar-brand" href="#">KaandDy</a>
+            <a class="navbar-brand" href="#"><img heigth="20px" width="100px" src="assets/img/KaandDy.png" alt="KaandDy"></a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
