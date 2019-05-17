@@ -42,7 +42,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Vender</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Trade</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="liked">Favs</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="chat">Chat</a></li>
                     <?php

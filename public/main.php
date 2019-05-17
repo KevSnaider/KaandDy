@@ -183,9 +183,9 @@
                     <p>Lorem ipsum dolor sit amet</p>
                     <div class="photo-tags">
                         <ul>
-                            <li><a class="btn btn-sm" href="#">descartar</a></li>
-                            <li><a class="btn btn-sm" href="#">Favorito</a></li>
-                            <li><a class="btn btn-sm disabled" href="#">Comprar</a></li>
+                            <li><a class="btn btn-sm" href="#"><i class="fas fa-ban"></i></a></li>
+                            <li><a class="btn btn-sm disabled" href="#"><i class="fas fa-cart-plus"></i></a></li>
+                            <li><a class="btn btn-sm" href="#"><i class="fas fa-star"></i></a></li>
                         </ul>
                     </div>
                 </div>

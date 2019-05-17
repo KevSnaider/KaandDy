@@ -11,11 +11,9 @@
     <div class="footer-basic">
         <footer>
             <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#">Services</a></li>
-                <li class="list-inline-item"><a href="#">About</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                <li class="list-inline-item"><a href="main">Home</a></li>
+                <li class="list-inline-item"><a href="services">Services</a></li>
+                <li class="list-inline-item"><a href="about">About</a></li>
             </ul>
             <p class="copyright">KaandDy © 2019</p>
         </footer>
