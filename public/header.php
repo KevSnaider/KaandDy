@@ -1,5 +1,5 @@
 <?php
-    require 'connect.php';
+    session_start();
 ?>
 <html>
 <head>
@@ -35,7 +35,7 @@
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-search">
         <div class="container">
-            <a class="navbar-brand" href="#"><img heigth="20px" width="100px" src="assets/img/KaandDy.png" alt="KaandDy"></a>
+            <a class="navbar-brand" href="main"><img heigth="20px" width="100px" src="assets/img/KaandDy.png" alt="KaandDy"></a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon"></span>
@@ -43,16 +43,23 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Vender</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Favs</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Chat</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="liked">Favs</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="chat">Chat</a></li>
+                    <?php
+                        if($_SESSION['type'] == 'ADMIN') {
+                            echo '<li class="nav-item" role="presentation"><a class="nav-link" href="admin">Admin</a></li>';
+                        }
+                    ?>
                 </ul>
-                <form class="form-inline mr-auto" target="_self">
+                <form action="products" class="form-inline mr-auto">
                     <div class="form-group">
                         <label for="search-field"><i class="fa fa-search"></i></label>
                         <input class="form-control search-field" type="search" name="search" id="search-field">
                     </div>
                 </form>
-                <a class="btn btn-light action-button" role="button" href="#">Log out</a>
+                <a class="btn btn-link" role="button" href="cart"><i class="fa fa-shopping-cart"> </i></a>
+                &nbsp;
+                <a class="btn btn-light action-button" role="button" href="logout">Log out</a>
             </div>
         </div>
     </nav>

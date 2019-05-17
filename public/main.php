@@ -1,5 +1,6 @@
 <?php
     require 'header.php';
+    require 'connect.php';
 
     if(isset($_POST['send'])) {
         $sql = "INSERT INTO user_responses(ure_question, ure_response, ure_use_id) VALUES
@@ -15,7 +16,12 @@
 <head>
 </head>
 <body>
-    <div id="content" class="content-wrap">
+<?php
+    $sql2 = "SELECT COUNT(*) AS counter FROM user_responses WHERE ure_use_id = (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."');";
+    $result2 = $conn->query($sql2);
+    if($result2->num_rows > 0){ $row = $result2->fetch_assoc();}
+    if($row['counter'] = 0) {
+        echo '<div id="content" class="content-wrap">
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-8">
@@ -164,54 +170,31 @@
                 </section>
             </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        var answers = new Array;
-
-        function setSelected(option) {
-            var pref = option.getAttribute("id");
-            var actual =option.parentNode.parentNode.parentNode;
-            var next = actual.nextElementSibling;
-            var quest = option.parentNode.parentNode.previousElementSibling.childNodes[0].textContent;
-            var ans = option.childNodes[3].childNodes[1].childNodes[0].textContent;
-
-            if(pref.startsWith('pref-1')) {
-                document.getElementById('question1').setAttribute('value', quest);
-                document.getElementById('answer1').setAttribute('value', ans);
-                var li = document.getElementsByClassName('nav-link active')[1];
-                li.setAttribute('class', 'nav-link disabled');
-                var nxtLi = document.getElementsByClassName('nav-link disabled')[1];
-                nxtLi.setAttribute('class', 'nav-link active');
-                actual.setAttribute('class', 'tab-pane');
-                next.setAttribute('class', 'tab-pane active');
-
-            } else if (pref.startsWith('pref-2')) {
-                document.getElementById('question2').setAttribute('value', quest);
-                document.getElementById('answer2').setAttribute('value', ans);
-                var li = document.getElementsByClassName('nav-link active')[1];
-                li.setAttribute('class', 'nav-link disabled');
-                var nxtLi = document.getElementsByClassName('nav-link disabled')[2];
-                nxtLi.setAttribute('class', 'nav-link active');
-                actual.setAttribute('class', 'tab-pane');
-                next.setAttribute('class', 'tab-pane active');
-
-            } else if (pref.startsWith('pref-3')) {
-                document.getElementById('question3').setAttribute('value', quest);
-                document.getElementById('answer3').setAttribute('value', ans);
-                var li = document.getElementsByClassName('nav-link active')[1];
-                li.setAttribute('class', 'nav-link disabled');
-                var nxtLi = document.getElementsByClassName('nav-link disabled')[3];
-                nxtLi.setAttribute('class', 'nav-link active');
-                actual.setAttribute('class', 'tab-pane');
-                next.setAttribute('class', 'tab-pane active');
-
-            } else if (pref.startsWith('pref-4')) {
-                document.getElementById('question4').setAttribute('value', quest);
-                document.getElementById('answer4').setAttribute('value', ans);
-                document.getElementsByClassName('btn btn-outline-succes disabled')[0].setAttribute('class', 'btn btn-outline-success');
-            }
-        }
-    </script>
+    </div>';
+    } else {
+        echo '<section>
+        <div class="container">
+            <div class="photo-card">
+                <div class="photo-background" style="background-image:url(&quot;assets/img/product-aeon-feature.jpg&quot;);"></div>
+                <div class="photo-details">
+                    <h1>Lorem ipsum</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales elementum mi non hendrerit. Proin tempor facilisis felis nec ultrices. Duis nec ultrices neque. Proin semper ultricies turpis, vel faucibus velit sodales vitae.
+                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&nbsp; </p>
+                    <p>Lorem ipsum dolor sit amet</p>
+                    <div class="photo-tags">
+                        <ul>
+                            <li><a class="btn btn-sm" href="#">descartar</a></li>
+                            <li><a class="btn btn-sm" href="#">Favorito</a></li>
+                            <li><a class="btn btn-sm disabled" href="#">Comprar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>';
+    }
+    $conn->close();
+?>
 </body>
 </html>
 
