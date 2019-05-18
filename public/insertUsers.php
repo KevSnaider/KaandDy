@@ -1,5 +1,7 @@
 <?php
     require 'connect.php';
+    session_start();
+
     if(isset($_POST['submit'])) {
         $user = $_POST['user'];
         $mail = $_POST['email'];

@@ -9,7 +9,7 @@
     <div class="footer-basic">
         <footer>
             <ul class="list-inline">
-                <li class="list-inline-item"><a href="main">Home</a></li>
+                <li class="list-inline-item"><a href="login">Home</a></li>
                 <li class="list-inline-item"><a href="services">Services</a></li>
                 <li class="list-inline-item"><a href="about">About</a></li>
             </ul>

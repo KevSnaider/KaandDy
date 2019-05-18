@@ -14,6 +14,7 @@
         }
     }
 ?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -48,7 +49,6 @@
             <div class="image-holder"></div>
             <form method="POST" action="insertUsers">
                 <h2 class="text-center"><strong>Create</strong> an account.</h2>
-                <?php echo $alert;?>
                 <div class="form-group">
                     <input class="form-control" type="text" name="user" placeholder="¤ User" required>
                 </div>
@@ -78,12 +78,9 @@
             </form>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-animation.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-    <script src="assets/js/Profile-Edit-Form.js"></script>
-    <script src="assets/js/Simple-Slider.js"></script>
 </body>
-
 </html>
+
+<?php
+    require 'footer.php';
+?>
