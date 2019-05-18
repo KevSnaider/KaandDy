@@ -176,30 +176,42 @@
         </div>
     </div>';
     } else {
+        $conn->close();
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $sql = "SELECT pro_id, pro_name, pro_descri, pro_image, pro_price, (CASE WHEN pro_status = 'D' THEN 'Available' WHEN pro_status = 'R' THEN 'Reserved' ELSE 'Sold' END) AS pro_status FROM productos WHERE pro_price != '' AND pro_cat_id IN(SELECT cat_id FROM categorias WHERE cat_id BETWEEN 75 AND 100);";
+        $result = $conn->prepare($sql);
+        $result->execute();
+        $result->bind_result($id, $name, $descri, $image, $price, $status);
         echo '<section>
         <div class="container">
-            <h1>Recommended</h1><hr>
-            <div class="photo-card">
-                <div class="photo-background" style="background-image:url(&quot;assets/img/product-aeon-feature.jpg&quot;);"></div>
-                <div class="photo-details">
-                    <h1>Lorem ipsum</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sodales elementum mi non hendrerit. Proin tempor facilisis felis nec ultrices. Duis nec ultrices neque. Proin semper ultricies turpis, vel faucibus velit sodales vitae.
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&nbsp; </p>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    <div class="photo-tags">
-                        <ul>
-                            <li><button id="prem" class="btn btn-dark"><i class="fas fa-ban"></i></button></li>
-                            <li><button id="pshop" class="btn btn-dark"><i class="fas fa-cart-plus"></i></button></li>
-                            <li><button id="pfav" class="btn btn-dark"><i class="fas fa-star"></i></button></li>
-                        </ul>
+            <h1>Recommended</h1><hr>';
+            while($result->fetch()) {
+                echo '<div id="pro-'.$id.'" class="photo-card" style="display: none;">
+                    <div class="photo-background" style="background-image:url(&quot;'.$image.'&quot;);"></div>
+                    <div class="photo-details">
+                        <h1>'.$name.'</h1>
+                        <p>'.$descri.'</p>
+                        <p>'.$price.' €</p>
+                        <p>'.$status.'</p>
+                        <div class="photo-tags">
+                            <ul>
+                                <li><button id="prem" class="btn btn-dark"><i class="fas fa-ban"></i></button></li>
+                                <li><button id="pshop" class="btn btn-dark"><i class="fas fa-cart-plus"></i></button></li>
+                                <li><button id="pfav" class="btn btn-dark"><i class="fas fa-star"></i></button></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div>';
+            }
+            
+            echo'</div>
     </section>';
     }
     $conn->close();
 ?>
+<script type="text/javascript">
+    document.getElementsByClassName('photo-card')[0].style.display = '';
+</script>
 </body>
 </html>
 

@@ -1,7 +1,9 @@
 img {
   vertical-align: middle;
 }
-
+.logo{
+ width:90%;	
+}
 .img-responsive {
   display: block;
   height: auto;

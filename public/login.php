@@ -57,7 +57,7 @@
         <form method="post" action="">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
-                <i class="icon ion-ios-locked-outline"></i>
+                <img class="logo" src="assets\img\KaandDy.png"></img>
             </div>
             <?php echo $answer; ?>
             <div class="form-group">

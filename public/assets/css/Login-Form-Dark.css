@@ -1,6 +1,6 @@
 .login-dark {
   height: 1000px;
-  background: #475d62 url(../../assets/img/star-sky.jpg);
+  background: #475d62 url(https://images6.alphacoders.com/367/367272.jpg);
   background-size: cover;
   position: relative;
 }
@@ -17,6 +17,7 @@
   left: 50%;
   color: #fff;
   box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+  opacity: 0.95;
 }
 
 .login-dark .illustration {
