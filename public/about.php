@@ -1,6 +1,7 @@
 <?php
     require 'header.php';
 ?>
+
 <html>
 <head>
 </head>
@@ -17,18 +18,26 @@
                 <div class="col-md-4 col-lg-3 item">
                     <div class="box" style="background-image:url(assets/img/1.jpg)">
                         <div class="cover">
-                            <h3 class="name">Ben Johnson</h3>
-                            <p class="title">Musician</p>
-                            <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                            <h3 class="name">David Suarez</h3>
+                            <p class="title">Programmer</p>
+                            <div class="social">
+                                <a href=""><i class="fab fa-facebook-f"></i></i></a>
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-lg-3 item">
                     <div class="box" style="background-image:url(assets/img/3.jpg)">
                         <div class="cover">
-                            <h3 class="name">Carl Kent</h3>
-                            <p class="title">Stylist </p>
-                            <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                            <h3 class="name">Kevin Ospina</h3>
+                            <p class="title">Programmer</p>
+                            <div class="social">
+                                <a href=""><i class="fab fa-facebook-f"></i></i></a>
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

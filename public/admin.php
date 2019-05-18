@@ -1,7 +1,12 @@
 <?php
     require 'header.php';
     require 'connect.php';
-    $sql = "SELECT pro_id, pro_name, pro_descri, (SELECT cat_descri FROM categorias WHERE cat_id = pro_cat_id) AS pro_cat, (SELECT use_login FROM users WHERE use_id = pro_seller) AS pro_seller, (CASE WHEN pro_status = 'D' THEN 'Available' WHEN pro_status = 'R' THEN 'Reserved' ELSE 'Sold' END) AS pro_status FROM productos;";
+    
+    if ($_SESSION['type'] != 'ADMIN') {
+        header('Location: login');
+    }
+
+    $sql = "SELECT pro_id, pro_name, pro_descri, (SELECT cat_descri FROM categorias WHERE cat_id = pro_cat_id) AS pro_cat, (SELECT use_login FROM users WHERE use_id = pro_seller) AS pro_seller, (CASE WHEN pro_status = 'D' THEN 'Available' WHEN pro_status = 'R' THEN 'Reserved' ELSE 'Sold' END) AS pro_status FROM productos WHERE pro_price !='';";
     $sql .= "SELECT cat_id, cat_descri, (CASE WHEN cat_subcat = '1' THEN 'Yes' ELSE 'No' END) AS cat_subcat, (SELECT supercat.cat_descri FROM categorias AS supercat WHERE supercat.cat_id = categorias.cat_supercat_id) AS cat_supercat FROM categorias;";
     $sql .= "SELECT use_id, use_login, use_mail, (CASE WHEN use_type = 'USER' THEN 'User' ELSE 'Administrator' END) AS use_type, (CASE WHEN use_status = 'A' THEN 'Active' ELSE 'Inactive' END) AS use_status FROM users;";
     $counter = 0;
@@ -31,31 +36,27 @@
         } while ($conn->next_result());
     }
 ?>
+
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>KaandDy</title>
 </head>
-
 <body>
     <div>
         <div>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Products</a></li>
-                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Categories</a></li>
-                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Users</a></li>
+                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#products">Products</a></li>
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#categories">Categories</a></li>
+                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#users">Users</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" role="tabpanel" id="tab-1">
+                <div class="tab-pane active" role="tabpanel" id="products">
                     <div class="row">
                         <div class="col-lg-1"><p></p></div>
                     </div>
                     <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <button class="btn btn-outline-success" type="button">Create</button>
+                            <a href="product-edit" class="btn btn-outline-success" role="button">Create</a>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -80,9 +81,9 @@
                                             <td>'.$product[4].'</td>
                                             <td>'.$product[5].'</td>
                                             <td>
-                                                <button class="btn btn-outline-warning" type="button">Edit</button>
+                                                <a href="product-edit?id='.$product[0].'" class="btn btn-outline-warning" role="button">Edit</a>
                                                 <span>&nbsp; &nbsp;</span>
-                                                <button class="btn btn-outline-danger" type="button">Delete</button>
+                                                <a href="delete?type="product"&id='.$product[0].'" class="btn btn-outline-danger" role="button">Delete</a>
                                             </td>
                                         </tr>';
                                     }
@@ -91,7 +92,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="tab-pane" role="tabpanel" id="categories">
                     <div class="row">
                         <div class="col-lg-1"><p></p></div>
                     </div>
@@ -130,7 +131,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane" role="tabpanel" id="tab-3">
+                <div class="tab-pane" role="tabpanel" id="users">
                     <div class="row">
                         <div class="col-lg-1"><p></p></div>
                     </div>
@@ -176,6 +177,7 @@
     </div>
 </body>
 </html>
+
 <?php
     require 'footer.php';
 ?>

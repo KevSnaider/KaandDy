@@ -1,11 +1,10 @@
 <?php
 	require 'header.php';
 ?>
-<html>
 
+<html>
 <head>
 </head>
-
 <body>
     <div>
         <div class="container">
@@ -436,6 +435,7 @@
     </div>
 </body>
 </html>
+
 <?php
 	require 'footer.php';
 ?>

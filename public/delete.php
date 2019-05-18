@@ -1,20 +1,19 @@
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style type="text/css">
-		html {
-			background-color: #4B088A;
+<?php
+	require 'connect.php';
+    session_start();
+
+    if ($_SESSION['type'] != 'ADMIN') {
+        header('Location: login');
+	}
+	
+	if (isset($_GET['type'])) {
+		if ($_GET['type'] == 'product') {
+			$sql = "DELETE FROM productos WHERE pro_id = ".$_GET['id'].";";
+			$result = $conn->prepare($sql);
+			$result->execute();
+			$conn->close();
+			echo '<script>alert("Product deleted successfully");</script>';
+			header('Location: admin');
 		}
-	</style>
-</head>
-<body>
-	<?php
-		require 'connect.php';
-		$sql = "DELETE FROM users WHERE user_id = ".$_GET['userID'].";";
-		$result = $conn->query($sql);
-		mysqli_close($conn);
-		header('Refresh: 0; URL = index.php');
-	?>
-</body>
-</html>
+	}
+?>

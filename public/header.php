@@ -1,6 +1,7 @@
 <?php
     session_start();
 ?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -59,7 +60,7 @@
                 </form>
                 <a class="btn btn-link" role="button" href="cart"><i class="fa fa-shopping-cart"> </i></a>
                 &nbsp;
-                <a class="btn btn-light action-button" role="button" href="logout">Log out</a>
+                <a class="btn btn-light action-button" role="button" href="logout"><?php echo $_SESSION['USER']; ?> <i class="fas fa-sign-out-alt"></i></a>
             </div>
         </div>
     </nav>

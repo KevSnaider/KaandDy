@@ -3,12 +3,16 @@
     require 'connect.php';
 
     if(isset($_POST['send'])) {
+        $user = $_SESSION['USER'];
         $sql = "INSERT INTO user_responses(ure_question, ure_response, ure_use_id) VALUES
-        ('".$_POST['question1']."', '".$_POST['answer1']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."')),
-        ('".$_POST['question2']."', '".$_POST['answer2']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."')),
-        ('".$_POST['question3']."', '".$_POST['answer3']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."')),
-        ('".$_POST['question4']."', '".$_POST['answer4']."', (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."'));";
-        $result = $conn->query($sql);
+        ('".$_POST['question1']."', '".$_POST['answer1']."', (SELECT use_id FROM users WHERE use_login LIKE '".$user."')),
+        ('".$_POST['question2']."', '".$_POST['answer2']."', (SELECT use_id FROM users WHERE use_login LIKE '".$user."')),
+        ('".$_POST['question3']."', '".$_POST['answer3']."', (SELECT use_id FROM users WHERE use_login LIKE '".$user."')),
+        ('".$_POST['question4']."', '".$_POST['answer4']."', (SELECT use_id FROM users WHERE use_login LIKE '".$user."'));";
+        $result = $conn->prepare($sql);
+        $result->execute();
+        $conn->close();
+        $conn = new mysqli($servername, $username, $password, $dbname);
     }
 ?>
 
@@ -20,7 +24,7 @@
     $sql2 = "SELECT COUNT(*) AS counter FROM user_responses WHERE ure_use_id = (SELECT use_id FROM users WHERE use_login LIKE '".$_SESSION['USER']."');";
     $result2 = $conn->query($sql2);
     if($result2->num_rows > 0){ $row = $result2->fetch_assoc();}
-    if($row['counter'] = 0) {
+    if($row['counter'] == 0) {
         echo '<div id="content" class="content-wrap">
         <div class="row">
             <div class="col-lg-1"></div>
@@ -143,20 +147,20 @@
                                                 <div id="col-lg-12">
                                                     <form method="POST" action="" id="sendAnswers">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="question1" id="question1">
-                                                            <input type="text" class="form-control" name="answer1" id="answer1">
+                                                            <input type="hidden" class="form-control" name="question1" id="question1">
+                                                            <input type="hidden" class="form-control" name="answer1" id="answer1">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="question2" id="question2">
-                                                            <input type="text" class="form-control" name="answer2" id="answer2">
+                                                            <input type="hidden" class="form-control" name="question2" id="question2">
+                                                            <input type="hidden" class="form-control" name="answer2" id="answer2">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="question3" id="question3">
-                                                            <input type="text" class="form-control" name="answer3" id="answer3">
+                                                            <input type="hidden" class="form-control" name="question3" id="question3">
+                                                            <input type="hidden" class="form-control" name="answer3" id="answer3">
                                                         </div>
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="question4" id="question4">
-                                                            <input type="text" class="form-control" name="answer4" id="answer4">
+                                                            <input type="hidden" class="form-control" name="question4" id="question4">
+                                                            <input type="hidden" class="form-control" name="answer4" id="answer4">
                                                         </div>
                                                     </form>
                                                 </div>
@@ -174,6 +178,7 @@
     } else {
         echo '<section>
         <div class="container">
+            <h1>Recommended</h1><hr>
             <div class="photo-card">
                 <div class="photo-background" style="background-image:url(&quot;assets/img/product-aeon-feature.jpg&quot;);"></div>
                 <div class="photo-details">
@@ -183,9 +188,9 @@
                     <p>Lorem ipsum dolor sit amet</p>
                     <div class="photo-tags">
                         <ul>
-                            <li><a class="btn btn-sm" href="#"><i class="fas fa-ban"></i></a></li>
-                            <li><a class="btn btn-sm disabled" href="#"><i class="fas fa-cart-plus"></i></a></li>
-                            <li><a class="btn btn-sm" href="#"><i class="fas fa-star"></i></a></li>
+                            <li><button id="prem" class="btn btn-dark"><i class="fas fa-ban"></i></button></li>
+                            <li><button id="pshop" class="btn btn-dark"><i class="fas fa-cart-plus"></i></button></li>
+                            <li><button id="pfav" class="btn btn-dark"><i class="fas fa-star"></i></button></li>
                         </ul>
                     </div>
                 </div>

@@ -11,7 +11,7 @@
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            if(hash('sha256', md5('Kev2019', false), false) == hash('sha256', md5($_POST['password'], false), false)) {
+            if($row['use_pass'] == md5(hash('sha256', $_POST['password'], false), false)) {
                 $_SESSION['USER'] = $row['use_login'];
                 $_SESSION['type'] = $row['use_type'];
                 header('Location: main');
@@ -23,8 +23,8 @@
         }
     }
 ?>
-<html>
 
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -52,7 +52,6 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Grid.css">
 </head>
-
 <body>
     <div class="login-dark">
         <form method="post" action="">
@@ -81,5 +80,4 @@
     <script src="assets/js/Profile-Edit-Form.js"></script>
     <script src="assets/js/Simple-Slider.js"></script>
 </body>
-
 </html>

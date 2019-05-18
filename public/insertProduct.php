@@ -7,7 +7,6 @@
     }
 
     if(isset($_POST['submit'])) {
-        $id = $_POST['id'];
         $name = $_POST['name'];
         $descri = $_POST['descri'];
         $image = $_POST['image'];
@@ -16,12 +15,12 @@
         $seller = $_POST['seller'];
         $status = $_POST['status'];
 
-        $sql = "UPDATE productos SET pro_name=?, pro_descri=?, pro_image=?, pro_price=?, pro_cat_id=?, pro_seller=?, pro_status=? WHERE pro_id=?;";
+        $sql = "INSERT INTO productos(pro_name, pro_descri, pro_image, pro_price, pro_cat_id, pro_seller, pro_status) VALUES ('?', '?', '?', '?', ?, ?, '?');";
         $result = $conn->prepare($sql);
-        $result->bind_param('ssssiisi', $name, $descri, $image, $price, $cat_id, $seller, $status, $id);
+        $result->bind_param('ssssiis', $name, $descri, $image, $price, $cat_id, $seller, $status);
         $result->execute();
         $conn->close();
     }
-    echo '<script>alert("Product updated successfully");</script>';
+    echo '<script>alert("Product inserted successfully");</script>';
     header('Location: admin');
 ?>

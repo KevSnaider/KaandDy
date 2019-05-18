@@ -2,10 +2,10 @@
     require 'header.php';
     // Add code to catch all the products
 ?>
+
 <html>
 <head>
 </head>
-
 <body>
     <section>
         <div class="container">
@@ -18,9 +18,9 @@
                     <p>Lorem ipsum dolor sit amet</p>
                     <div class="photo-tags">
                         <ul>
-                            <li><a class="btn btn-sm" href="#"><i class="fas fa-ban"></i></a></li>
-                            <li><a class="btn btn-sm disabled" href="#"><i class="fas fa-cart-plus"></i></a></li>
-                            <li><a class="btn btn-sm" href="#"><i class="fas fa-star"></i></a></li>
+                            <li><button id="prem" class="btn btn-dark"><i class="fas fa-ban"></i></button></li>
+                            <li><button id="pshop" class="btn btn-dark"><i class="fas fa-cart-plus"></i></button></li>
+                            <li><button id="pfav" class="btn btn-dark"><i class="fas fa-star"></i></button></li>
                         </ul>
                     </div>
                 </div>
@@ -29,6 +29,7 @@
     </section>
 </body>
 </html>
+
 <?php
     require 'footer.php';
 ?>

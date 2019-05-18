@@ -1,24 +1,93 @@
 <?php
+    require 'connect.php';
+
     if(isset($_POST['forgot'])) {
         if (isset($_POST['email'])) {
-            $to = $_POST['email'];
-        } else if ($_POST['user'] = 'nivek') {
-            $to = 'nivek-827@outlook.es';
-        } else {
-            $to = 'nivek-827@outlook.es';
-        }
-        $subject = 'Prueba 2';
-        $message = 'Esto es una prueba';
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
-        $headers .= 'From: kaanddy@kaanddy.es' . "\r\n";
-        $headers .= 'X-Mailer: PHP/' . phpversion();
+            $selectM = "SELECT COUNT(*) FROM users WHERE use_mail=?;";
+            $resultM = $conn->prepare($selectM);
+            $resultM->bind_param("s", $_POST['email']);
+            $resultM->execute();
+            $resultM->bind_result($mailM);
+            $resultM->fetch();
+            $conn->close();
 
-        mail($to, $subject, $message, $headers);
+            if($mailM >= 1) {
+                $conn =  new mysqli($servername, $username, $password, $dbname);
+                $select = "SELECT use_login FROM users WHERE use_mail=?;";
+                $result = $conn->prepare($select);
+                $result->bind_param("s", $_POST['email']);
+                $result->execute();
+                $result->bind_result($user);
+                $result->fetch();
+                $conn->close();
+
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                $update = "UPDATE users SET use_pass = '".md5('kaanddy', false)."' WHERE use_login=?;";
+                $updater = $conn->prepare($update);
+                $updater->bind_param("s", $user);
+                $updater->execute();
+                $conn->close();
+                
+                $to = $_POST['email'];
+            } else {
+                $alert = "This email isn't in our databases";
+            }
+
+            $subject = 'Password reset';
+            $message = 'Dear '.$user.',<br>We reset your password as you ask us.<br>Your temporary password is: kaanddy<br><br>If you do\'t request it please contact with us';
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+            $headers .= 'From: kaanddy@kaanddy.es' . "\r\n";
+            $headers .= 'X-Mailer: PHP/' . phpversion();
+    
+            mail($to, $subject, $message, $headers);
+        } else if (isset($_POST['user'])) {
+            $conn =  new mysqli($servername, $username, $password, $dbname);
+            $selectL = "SELECT COUNT(*) FROM users WHERE use_login=?;";
+            $resultL = $conn->prepare($selectL);
+            $resultL->bind_param("s", $_POST['user']);
+            $resultL->execute();
+            $resultL->bind_result($mailL);
+            $resultL->fetch();
+            $conn->close();
+            
+            if($mailM >= 1) {
+                $conn =  new mysqli($servername, $username, $password, $dbname);
+                $select = "SELECT use_mail FROM users WHERE use_login=?;";
+                $result = $conn->prepare($select);
+                $result->bind_param("s", $_POST['user']);
+                $result->execute();
+                $result->bind_result($mail);
+                $result->fetch();
+                $conn->close();
+
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                $update = "UPDATE users SET use_pass = '".md5('kaanddy', false)."' WHERE use_login=?;";
+                $updater = $conn->prepare($update);
+                $updater->bind_param("s", $_POST['user']);
+                $updater->execute();
+                $conn->close();
+
+                $to = $mail;
+            } else {
+                $alert = "This user isn't in our databases";
+            }
+
+            $subject = 'Password reset';
+            $message = 'Dear '.$_POST['user'].',<br>We reset your password as you ask us.<br>Your temporary password is: kaanddy<br><br>If you do\'t request it please contact with us';
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+            $headers .= 'From: kaanddy@kaanddy.es' . "\r\n";
+            $headers .= 'X-Mailer: PHP/' . phpversion();
+    
+            mail($to, $subject, $message, $headers);
+        } else {
+            $alert = "Please, give us your user or email";
+        }
     }
 ?>
-<html>
 
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -50,7 +119,6 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Grid.css">
 </head>
-
 <body>
     <div class="register-photo">
         <div class="form-container">
@@ -68,6 +136,7 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary btn-block" type="submit" name="forgot">Send</button>
+                    <a href="login" class="btn btn-secondary btn-block">Back</a>
                 </div>
             </form>
         </div>
@@ -79,5 +148,4 @@
     <script src="assets/js/Profile-Edit-Form.js"></script>
     <script src="assets/js/Simple-Slider.js"></script>
 </body>
-
 </html>

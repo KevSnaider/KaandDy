@@ -1,6 +1,17 @@
 <?php
     if (isset($_GET['response'])) {
-        //Add code to alert user all the posibles solutions
+        if($_GET['response'] == 'error') {
+            echo '<script>alert("Something unexpected ocurred");</script>';
+        } else if($_GET['response'] == 'erroruser') {
+            echo '<script>alert("This username isn\'t available");</script>';
+        } else if($_GET['response'] == 'errormail') {
+            echo '<script>alert("An account with this email already exists");</script>';
+        } else if($_GET['response'] == 'errorpass') {
+            echo '<script>alert("The passwords doesn\'t match");</script>';
+        } else {
+            echo '<script>alert("The account was created successfully");</script>';
+            header('Location: login');
+        }
     }
 ?>
 <html>
@@ -35,17 +46,36 @@
     <div class="register-photo">
         <div class="form-container">
             <div class="image-holder"></div>
-            <form method="post" action="insertUser.php">
+            <form method="POST" action="insertUsers">
                 <h2 class="text-center"><strong>Create</strong> an account.</h2>
-                <div class="form-group"><input class="form-control" type="text" name="user" placeholder="¤ User"></div>
-                <div class="form-group"><input class="form-control" type="email" name="email" placeholder="¤ Email"></div>
-                <div class="form-group"><input class="form-control" type="password" name="password" placeholder="¤ Password"></div>
-                <div class="form-group"><input class="form-control" type="password" name="password-repeat" placeholder="¤ Password (repeat)"></div>
-                <div class="form-group"><small class="text-muted">Fields with ¤ are required</small></div>
+                <?php echo $alert;?>
                 <div class="form-group">
-                    <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to the license terms.</label></div>
+                    <input class="form-control" type="text" name="user" placeholder="¤ User" required>
                 </div>
-                <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Sign Up</button></div><a href="#" class="already">You already have an account? Login here.</a></form>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="¤ Email" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="¤ Password" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="confirmpass" placeholder="¤ Confirm password" required>
+                </div>
+                <div class="form-group">
+                    <small class="text-muted">Fields with ¤ are required</small>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" required>I agree to the license terms.
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit" name="submit">Sign Up</button>
+                </div>
+                <a href="login" class="already">You already have an account? Login here.</a>
+            </form>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -1,11 +1,9 @@
 <?php
 
 ?>
+
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>KaandDy</title>
 </head>
 <body>
     <div class="footer-basic">
@@ -31,5 +29,7 @@
     <script src="assets/js/Simple-Slider.js"></script>
     <script src="assets/js/chat.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/products.js"></script>
+    <script src="assets/js/liked.js"></script>
 </body>
 </html>
