@@ -57,7 +57,7 @@
         <form method="post" action="">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration">
-                <img class="logo" src="assets\img\KaandDy.png"></img>
+                <img class="logo" src="assets\img\KaandDy.png">
             </div>
             <?php echo $answer; ?>
             <div class="form-group">
