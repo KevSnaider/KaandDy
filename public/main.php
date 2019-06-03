@@ -2,6 +2,10 @@
     require 'header.php';
     require 'connect.php';
 
+    if(!isset($_SESSION['USER'])) {
+        header('Location: index');
+    }
+
     if(isset($_POST['send'])) {
         $user = $_SESSION['USER'];
         $sql = "INSERT INTO user_responses(ure_question, ure_response, ure_use_id) VALUES
